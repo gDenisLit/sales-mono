@@ -1,11 +1,14 @@
 import { Hono } from 'hono'
 import { dbService } from './services/db.service'
+import { ApiController } from './api.controller'
 
 await dbService.connectMongoDb()
 
 const app = new Hono()
 
-app.get('/', (c) => c.json({ message: 'Hello World' }))
+app.get('/health', (c) => c.json({ message: 'Healty' }, 200))
+
+app.route('/', ApiController)
 
 const server = Bun.serve({
     port: 3000,
