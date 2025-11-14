@@ -1,4 +1,4 @@
-import type { PaginationInputType, PaginatoinResultsType } from '../../types/pagination.types'
+import type { PaginationInputType, PaginatoinResultsType } from '@shared/types/pagination.types'
 import type { ObjectId } from '../../types/mongo.types'
 import { PersonModel, type Person } from './person.schema'
 

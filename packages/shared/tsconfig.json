@@ -13,11 +13,6 @@
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "noEmit": true,
-    "baseUrl": ".",
-    "paths": {
-      "@shared": ["../shared/src/index.ts"],
-      "@shared/*": ["../shared/src/*"]
-    },
 
     // Best practices
     "strict": true,

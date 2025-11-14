@@ -1,6 +1,8 @@
 import * as mongoose from 'mongoose'
+import type { SchemaBaseFields } from '../../types/mongo.types'
+import type { ICompany } from '@shared/models/company.model'
 
-const companySchema = new mongoose.Schema(
+const companySchema = new mongoose.Schema<SchemaBaseFields<ICompany>>(
     {
         profileUrl: { type: String, required: true },
         city: { type: String },
@@ -14,7 +16,6 @@ const companySchema = new mongoose.Schema(
         region: { type: String },
         sizeRange: { type: String },
         source: { type: String },
-        updatedAt: { type: Date },
         website: { type: String },
         zip: { type: String },
         companyId: { type: Number },
@@ -39,6 +40,12 @@ const companySchema = new mongoose.Schema(
         strict: 'throw',
     },
 )
+
+companySchema.virtual('id').get(function () {
+    return this._id.toString()
+})
+companySchema.set('toJSON', { virtuals: true })
+companySchema.set('toObject', { virtuals: true })
 
 export type Company = mongoose.InferSchemaType<typeof companySchema>
 export const CompanyModel = mongoose.model<Company>('Company', companySchema)

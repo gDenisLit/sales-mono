@@ -1,6 +1,8 @@
 import * as mongoose from 'mongoose'
+import type { SchemaBaseFields } from '../../types/mongo.types'
+import type { IEducation, IExperience, IPerson } from '@shared/models/person.model'
 
-const educationSchema = new mongoose.Schema(
+const educationSchema = new mongoose.Schema<SchemaBaseFields<IEducation>>(
     {
         school: String,
         school_public_id: String,
@@ -13,7 +15,7 @@ const educationSchema = new mongoose.Schema(
     { _id: false },
 )
 
-const experienceSchema = new mongoose.Schema(
+const experienceSchema = new mongoose.Schema<SchemaBaseFields<IExperience>>(
     {
         starts_at: Date,
         ends_at: Date,
@@ -30,7 +32,7 @@ const experienceSchema = new mongoose.Schema(
     { _id: false },
 )
 
-const personSchema = new mongoose.Schema(
+const personSchema = new mongoose.Schema<SchemaBaseFields<IPerson>>(
     {
         city: String,
         connections: Number,
@@ -102,6 +104,12 @@ const personSchema = new mongoose.Schema(
         strict: 'throw',
     },
 )
+
+personSchema.virtual('id').get(function () {
+    return this._id.toString()
+})
+personSchema.set('toJSON', { virtuals: true })
+personSchema.set('toObject', { virtuals: true })
 
 export type Person = mongoose.InferSchemaType<typeof personSchema>
 export const PersonModel = mongoose.model<Person>('Person', personSchema)

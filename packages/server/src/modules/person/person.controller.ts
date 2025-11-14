@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import { toObjectId } from '../../helpers/mongo.helpers'
 import { createLogger } from '../../tools/logger'
-import type { PaginationInputType } from '../../types/pagination.types'
+import type { PaginationInputType } from '@shared/types/pagination.types'
 import { PersonService } from './person.service'
 import { CompanyService } from '../company/company.service'
 

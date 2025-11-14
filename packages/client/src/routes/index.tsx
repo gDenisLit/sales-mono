@@ -1,9 +1,9 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { searchCompanies } from '../lib/company-api'
+import { searchCompanies } from '@/pages/company/api/company-api'
 import { useDebouncedValue } from '../hooks/use-debounce'
-import type { Company } from '../types/company'
+import type { ICompany } from '@shared/models/company.model'
 
 const MIN_SEARCH_LENGTH = 2
 const PREVIEW_LIMIT = 5
@@ -50,10 +50,10 @@ function SearchLanding() {
         })
     }
 
-    const handleCompanySelect = (company: Company) => {
+    const handleCompanySelect = (company: ICompany) => {
         navigate({
             to: '/company/$companyId',
-            params: { companyId: company._id },
+            params: { companyId: company.id },
         })
     }
 
@@ -106,7 +106,7 @@ function SearchLanding() {
                     )}
                     {suggestions.map((company) => (
                         <button
-                            key={company._id}
+                            key={company.id}
                             type="button"
                             onClick={() => handleCompanySelect(company)}
                             className="flex w-full items-center gap-4 rounded-xl px-4 py-3 text-left transition hover:bg-white/5"

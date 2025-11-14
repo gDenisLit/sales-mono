@@ -2,7 +2,7 @@ import { Hono } from 'hono'
 import type { Company } from './company.schema'
 import { toObjectId } from '../../helpers/mongo.helpers'
 import { createLogger } from '../../tools/logger'
-import type { PaginationInputType } from '../../types/pagination.types'
+import type { PaginationInputType } from '@shared/types/pagination.types'
 import { CompanyService } from './company.service'
 
 export const CompanyController = new Hono()

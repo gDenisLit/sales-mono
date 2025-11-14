@@ -1,10 +1,5 @@
-type FundingData = {
-    rounds?: Record<string, unknown>[]
-    investors?: Record<string, unknown>[]
-}
-
-export type Company = {
-    _id: string
+export interface ICompany {
+    id: string
     name: string
     industry?: string
     city?: string
@@ -24,16 +19,15 @@ export type Company = {
     yearFounded?: number
     domain?: string
     domains?: string[]
-    funding?: FundingData
+    funding?: {
+        rounds?: Record<string, unknown>[]
+        investors?: Record<string, unknown>[]
+    }
     companyId?: number
     publicIdentifier?: string
     prevPublicIdentifiers?: string[]
-    scrapedAt?: string
-    updatedAt?: string
-}
-
-export type PaginatedCompaniesResponse = {
-    total: number
-    size: number
-    results: Company[]
+    scrapedAt?: Date
+    updatedAt?: Date
+    createdAt?: Date
+    downloadedUrl?: string
 }

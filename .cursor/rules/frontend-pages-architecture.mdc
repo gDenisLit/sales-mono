@@ -1,0 +1,14 @@
+---
+description: Frontend routing + page architecture expectations.
+globs: "packages/client/src/**/*.tsx"
+alwaysApply: false
+---
+
+## Route Declarations vs. Pages
+
+- Files in `src/routes/**` must only register TanStack routes: import the page component, call `createFileRoute`, and export the route. No UI, hooks, or fetching logic lives here.
+- Each top-level page resides under `src/pages/<feature>/<PageName>.tsx` and can organize dedicated `components/`, `api/`, and `lib/` folders for feature-specific code.
+- Page-driven fetch helpers belong in that page's `api/` directory so routes and shared components never reach into `fetch` implementations directly.
+- Feature leaf components stay inside `src/pages/<feature>/components` until they prove reusable; once generic, move them into `src/components` and consume them through the `@/components/*` alias.
+- Shared UI primitives (cards, inputs, tables, buttons) and cross-page helpers should live in `src/components` while cross-cutting utilities should live in `src/lib`.
+- When editing existing files, prefer importing helpers from `src/lib` (e.g., `@/lib/utils`) instead of duplicating logic inside page or route files.

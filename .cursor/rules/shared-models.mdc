@@ -1,0 +1,15 @@
+---
+description: Shared client/server data contracts live in /packages/shared.
+globs: [
+  "packages/client/src/**/*.{ts,tsx}",
+  "packages/server/src/**/*.ts"
+]
+alwaysApply: false
+---
+
+## Cross-layer data contracts
+
+- Any payload sent between the client and server must have its TypeScript interfaces or types defined under `packages/shared/src`.
+- Do not introduce duplicate or local-only versions of these contracts inside client or server source files; instead import them via the `@shared/*` aliases.
+- When a new API endpoint needs additional fields, update the shared model first, re-export it through `packages/shared/src/index.ts`, and then consume it from both client and server.
+- Keep helper-specific view models inside feature modules only when they are derived from shared models (e.g., UI-only shapes). Raw API responses/request bodies always reference shared definitions.

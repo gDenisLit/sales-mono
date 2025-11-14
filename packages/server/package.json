@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "hono": "^4.10.5",
-        "mongoose": "^8.19.3"
+        "mongoose": "^8.19.3",
+        "shared": "workspace:*"
     }
 }

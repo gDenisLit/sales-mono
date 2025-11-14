@@ -1,7 +1,7 @@
 import { CompanyModel, type Company } from './company.schema'
 import { ConfigService } from '../../services/config.service'
 import type { ObjectId } from '../../types/mongo.types'
-import type { PaginationInputType, PaginatoinResultsType } from '../../types/pagination.types'
+import type { PaginationInputType, PaginatoinResultsType } from '@shared/types/pagination.types'
 
 export const CompanyService = {
     createCompany,
