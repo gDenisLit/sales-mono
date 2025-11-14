@@ -1,10 +1,99 @@
 import * as mongoose from 'mongoose'
 
+const educationSchema = new mongoose.Schema(
+    {
+        school: String,
+        school_public_id: String,
+        school_short_id: String,
+        degree_name: String,
+        field_of_study: String,
+        school_profile_url: String,
+        logo_url: String,
+    },
+    { _id: false },
+)
+
+const experienceSchema = new mongoose.Schema(
+    {
+        starts_at: Date,
+        ends_at: Date,
+        company: String,
+        company_profile_url: String,
+        company_public_id: String,
+        company_id: Number,
+        title: String,
+        description: String,
+        location: String,
+        logo_url: String,
+        website: String,
+    },
+    { _id: false },
+)
+
 const personSchema = new mongoose.Schema(
     {
-        name: { type: String, required: true },
-        age: { type: Number, required: true },
-        email: { type: String, required: true },
+        city: String,
+        connections: Number,
+
+        education: {
+            type: [educationSchema],
+            default: [],
+        },
+
+        experiences: {
+            type: [experienceSchema],
+            default: [],
+        },
+
+        headline: String,
+        languages: {
+            type: [String],
+            default: [],
+        },
+
+        occupation: String,
+        source: String,
+        summary: String,
+
+        baseScrapedAt: Date,
+        scrapedAt: Date,
+
+        country: String,
+        countryCode: String,
+
+        certifications: {
+            type: [String],
+            default: [],
+        },
+
+        experienceFromSafeSource: Boolean,
+
+        skills: {
+            type: [String],
+            default: [],
+        },
+
+        state: String,
+
+        publicIds: {
+            type: [String],
+            default: [],
+        },
+
+        emails: {
+            type: [String],
+            default: [],
+        },
+
+        firstName: String,
+        lastName: String,
+        profilePicUrl: String,
+
+        publicIdentifier: String,
+        profileUrl: String,
+
+        linkedinId: Number,
+        linkedinUrn: String,
     },
     {
         collection: 'person',

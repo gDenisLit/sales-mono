@@ -4,7 +4,7 @@ import type { Company } from '../../repos/company/company.schema'
 import { toObjectId } from '../../helpers/mongo.helpers'
 import { createLogger } from '../../tools/logger'
 
-export const CompanyController = new Hono().basePath('/company')
+export const CompanyController = new Hono()
 const Logger = createLogger('CompanyController')
 
 CompanyController.get('/:id', async (c) => {
@@ -16,7 +16,7 @@ CompanyController.get('/:id', async (c) => {
         }
         return c.json(company, 200)
     } catch (error: any) {
-        Logger.error('Had error getting company by public id', error.stack, {
+        Logger.error('Had error getting company by id', error.stack, {
             message: error.message,
         })
         return c.json({ error: 'Internal server error' }, 500)

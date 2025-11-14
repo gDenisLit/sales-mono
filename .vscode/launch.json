@@ -1,0 +1,15 @@
+{
+  "configurations": [
+    {
+      "name": "Bun: Debug File",
+      "type": "bun",
+      "request": "launch",
+      "program": "${file}",
+      "internalConsoleOptions": "openOnSessionStart",
+      "env": {
+        "MONGO_URI": "mongodb+srv://admin:R9QWO8pZGkk9mhnx@sales.5qouixk.mongodb.net/",
+        "MONGO_DB_NAME": "sales-staging"
+      }
+    }
+  ]
+}
