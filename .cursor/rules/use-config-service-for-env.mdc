@@ -1,0 +1,7 @@
+---
+description: Use configService for environment variables in server package.
+globs: "packages/server/**/*.ts"
+alwaysApply: true
+---
+
+When reading environment variables in the server codebase, prefer the helpers in `packages/server/src/services/config.service.ts` (e.g. `configService.get`/`getOrThrow`) instead of accessing `process.env` or `Bun.env` directly.

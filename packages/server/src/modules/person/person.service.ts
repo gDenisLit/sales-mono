@@ -1,10 +1,10 @@
-import { PersonModel, type Person } from './person.schema'
 import type { PaginationInputType, PaginatoinResultsType } from '../../types/pagination.types'
 import type { ObjectId } from '../../types/mongo.types'
+import { PersonModel, type Person } from './person.schema'
 
-export const PersonRepo = {
+export const PersonService = {
     getPersonById,
-    getPeopleByCompanyPublicIdPaginated,
+    searchPeopleByCompanyPublicIdPaginated,
 }
 
 async function getPersonById(id: ObjectId): Promise<Person> {
@@ -15,7 +15,7 @@ async function getPersonById(id: ObjectId): Promise<Person> {
     return person
 }
 
-async function getPeopleByCompanyPublicIdPaginated(
+async function searchPeopleByCompanyPublicIdPaginated(
     companyPublicId: string,
     { skip, limit }: PaginationInputType,
 ): Promise<PaginatoinResultsType<Person>> {

@@ -1,0 +1,11 @@
+---
+description: Server CORS expectations for local org chart app.
+globs: "packages/server/src/index.ts"
+alwaysApply: false
+---
+
+## CORS Guardrails
+
+- The Bun/Hono server must accept browser calls from the Vite dev server running on `http://localhost:5173`.
+- Keep the `cors` middleware mounted before any routes and ensure `origin` explicitly includes that port so the client search + detail fetchers work during development.
+- If you need to support more origins later, extend the allow-list here instead of removing the middleware.

@@ -1,10 +1,18 @@
 import { Hono } from 'hono'
+import { cors } from 'hono/cors'
 import { dbService } from './services/db.service'
 import { ApiController } from './api.controller'
 
 await dbService.connectMongoDb()
 
 const app = new Hono()
+
+app.use(
+    '*',
+    cors({
+        origin: 'http://localhost:5173',
+    }),
+)
 
 app.get('/health', (c) => c.json({ message: 'Healty' }, 200))
 

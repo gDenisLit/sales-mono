@@ -11,7 +11,7 @@ function getOrThrow<T>(key: string): T {
     return value as T
 }
 
-export const configService = {
+export const ConfigService = {
     get,
     getOrThrow,
 }

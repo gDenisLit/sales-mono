@@ -1,9 +1,9 @@
 import * as mongoose from 'mongoose'
-import { configService } from './config.service'
+import { ConfigService } from './config.service'
 
 async function connectMongoDb() {
-    const mongoUri = configService.getOrThrow<string>('MONGO_URI')
-    const dbName = configService.getOrThrow<string>('MONGO_DB_NAME')
+    const mongoUri = ConfigService.getOrThrow<string>('MONGO_URI')
+    const dbName = ConfigService.getOrThrow<string>('MONGO_DB_NAME')
 
     try {
         await mongoose.connect(mongoUri, { dbName })

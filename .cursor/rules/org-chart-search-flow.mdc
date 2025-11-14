@@ -1,0 +1,14 @@
+---
+description: Org chart search flow + routing contracts.
+globs: "packages/client/src/**/*.tsx"
+alwaysApply: false
+---
+
+## Org Chart Search Pattern
+
+- The landing route (`/`) owns the search input + preview dropdown. It never fetches the full list; it only calls `searchCompanies` with `skip=0` and a tight `limit` for previews.
+- When the user submits or presses Enter we navigate to `/company/list` with `name` + `page`. Keep this contract stable so pagination + refetching keeps working.
+- Clicking a preview (landing page or list) should always go to `/company/$companyId` so the org chart screen can hydrate itself via `getCompanyById`.
+- Reuse the QueryClient context from `integrations/tanstack-query/root-provider` and prefer TanStack Query for all async data (previews, lists, detail).
+- Pagination math lives in `routes/company/list.tsx` where `skip = (page - 1) * PAGE_SIZE`. If you change PAGE_SIZE adjust the UI copy and totalPages calculation alongside it.
+- All client fetches must hit the Hono API running on `http://localhost:3000`; use `import.meta.env.VITE_SERVER_URL ?? 'http://localhost:3000'` in `lib/company-api.ts` to keep the base consistent across routes.
