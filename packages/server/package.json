@@ -1,15 +1,21 @@
 {
-  "name": "server",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "start": "bun run index.ts"
-  },
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  }
+    "name": "server",
+    "module": "index.ts",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "start": "bun run index.ts",
+        "dev": "bun run --hot src/index.ts"
+    },
+    "devDependencies": {
+        "@types/bun": "latest",
+        "prettier": "^3.6.2"
+    },
+    "peerDependencies": {
+        "typescript": "^5"
+    },
+    "dependencies": {
+        "hono": "^4.10.5",
+        "mongoose": "^8.19.3"
+    }
 }
