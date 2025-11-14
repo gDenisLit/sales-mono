@@ -3,7 +3,7 @@ export type PaginationInputType = {
     limit: number
 }
 
-export type PaginatoinResultsType<T> {
+export type PaginatoinResultsType<T> = {
     total: number
     size: number
     results: T[]
